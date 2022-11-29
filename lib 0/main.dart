@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supper_app/models/models.dart';
-import 'package:supper_app/providers/service_item_provider.dart';
+import 'package:supper_app/providers/production_provider.dart';
 
 import 'package:supper_app/providers/providers.dart';
 import 'package:supper_app/screens/screens.dart';
@@ -15,7 +15,7 @@ import 'color_schemes.g.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final Isar isar =
-      await Isar.open([UserSchema, EmployeeSchema, RegisteredPointSchema, ServiceItemSchema]);
+      await Isar.open([UserSchema, EmployeeSchema, RegisteredPointSchema, ProductionSchema]);
 
   runApp(Supper(isar: isar));
 }
@@ -39,7 +39,7 @@ class Supper extends StatelessWidget {
         ChangeNotifierProvider(
             create: (_) => RegisteredPointProvider(isar: isar)),
         ChangeNotifierProvider(create: (_) => JourneyProvider()),
-        ChangeNotifierProvider(create: (_) => ServiceItemProvider(isar: isar))
+        ChangeNotifierProvider(create: (_) => ProductionProvider(isar: isar))
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

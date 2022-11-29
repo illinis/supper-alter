@@ -20,7 +20,7 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
 
     await isar.writeTxn(() async {
-      await isar.users.put(user);
+        await isar.users.put(user);
     });
   }
 
@@ -63,9 +63,6 @@ class UserProvider with ChangeNotifier {
 
       await isar.writeTxn(() async {
         await isar.users.where().anyId().deleteFirst();
-      });
-      await isar.writeTxn(() async {
-        await isar.serviceItems.clear();
       });
     } catch (e) {
       debugPrint(e.toString());

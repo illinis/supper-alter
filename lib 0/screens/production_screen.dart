@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supper_app/color_schemes.g.dart';
 import 'package:supper_app/models/models.dart';
-import '../providers/providers.dart';
+import 'package:supper_app/providers/production_provider.dart';
 
 class ProductionScreen extends StatefulWidget {
   final bool hideAppBar;
@@ -18,32 +18,17 @@ class ProductionScreen extends StatefulWidget {
 }
 
 class _ProductionPageState extends State<ProductionScreen> {
-  static const List<String> servicesClassification = [""];
-
-  Future<void> test() async {
-    ServiceItemProvider serviceItemProvider =
-        context.read<ServiceItemProvider>();
-    final serviceItems = await serviceItemProvider.fetchServiceItems();
-  }
-
   Future<void> registerProduction() async {
-    ServiceItemProvider serviceItemProvider =
-        context.read<ServiceItemProvider>();
+    ProductionProvider productionProvider = context.read<ProductionProvider>();
 
-    dynamic result = await serviceItemProvider.insertNewServiceItem(ServiceItem(
-      serviceId: 17725,
-      unitaryValue: 0.5,
-      unitService: "UN",
-      description: "SUBSTITUIÇÃO DE TIREFON",
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-      serviceClassificationId: 3,
-      progressiveTablesId: null,
-      companyId: 1,
-      goal: null,
-      workId: 130246001,
-    ));
-
+    dynamic result = await productionProvider.insertNewProduction(Production(
+        date: DateTime.now(),
+        designation_id: 1,
+        taskName: "Troca de dormentes",
+        service_item_id: 1,
+        unitaryValue: 0.5,
+        finalTaskMensuration: 15,
+        employeeIdList: ["01", "02", "03"]));
     if (mounted) {
       if (result is String) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -175,7 +160,7 @@ class _ProductionPageState extends State<ProductionScreen> {
                               ),
                             ),
                           ),
-                          onTap: () => {},
+                          onTap: () => registerProduction(),
                         ),
                       ),
                     ),

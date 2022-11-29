@@ -56,10 +56,6 @@ class _LoginScreenState extends State<LoginScreen> {
             positionId: -1),
       );
 
-      ServiceItemProvider serviceItemProvider =
-          context.read<ServiceItemProvider>();
-      final serviceItems = await serviceItemProvider.fetchServiceItems();
-
       UserProvider userProvider = context.read<UserProvider>();
       final String? workName = await userProvider.fetchWorkName();
 
