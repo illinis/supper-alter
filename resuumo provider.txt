@@ -1,0 +1,15 @@
+pegar as rotas, 
+
+
+
+Production Model
+
+designation_id -> ponto-dev.celulaweb.com.br/api/designation/list/all
+
+taskName -> ponto-dev.celulaweb.com.br/api/work/list/service-items
+
+provider = fetch, fetchlocal, get/set, get filtrado(id/nome)
+service = service_items -> classifications e service items
+
+service_items -> tipos de serviço
+production -> mandar pras rotas (ultima tela)
