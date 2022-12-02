@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final int? maxLines;
   final bool obscureText;
+  final bool enabled;
   final void Function()? onTap;
   final String? Function(String?)? validator;
   final TextInputType keyboardType;
@@ -16,22 +17,23 @@ class CustomTextField extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final List<TextInputFormatter> inputFormatters;
 
-  const CustomTextField({
-    Key? key,
-    required this.controller,
-    this.hintText,
-    this.labelText,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.maxLines = 1,
-    this.obscureText = false,
-    this.onTap,
-    this.validator,
-    this.keyboardType = TextInputType.text,
-    this.textInputAction = TextInputAction.done,
-    this.textCapitalization = TextCapitalization.sentences,
-    this.inputFormatters = const []
-  }) : super(key: key);
+  const CustomTextField(
+      {Key? key,
+      required this.controller,
+      this.hintText,
+      this.labelText,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.maxLines = 1,
+      this.obscureText = false,
+      this.enabled = true,
+      this.onTap,
+      this.validator,
+      this.keyboardType = TextInputType.text,
+      this.textInputAction = TextInputAction.done,
+      this.textCapitalization = TextCapitalization.sentences,
+      this.inputFormatters = const []})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,29 +44,31 @@ class CustomTextField extends StatelessWidget {
       textInputAction: textInputAction,
       textCapitalization: textCapitalization,
       inputFormatters: inputFormatters,
+      minLines: 1,
       maxLines: maxLines,
       obscureText: obscureText,
+      enabled: enabled,
       readOnly: onTap != null,
       onTap: onTap,
       validator: validator,
       decoration: InputDecoration(
-        hintText: hintText,
-        labelText: labelText,
-        prefixIcon: prefixIcon,
-        suffixIcon: suffixIcon,
-        border: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.primary,
-            width: 3
+          hintText: hintText,
+          labelText: labelText,
+          prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.primary,
+              width: 3,
+            ),
+            borderRadius: BorderRadius.circular(8.0),
           ),
-          borderRadius: BorderRadius.circular(8.0)
-        ),
-        contentPadding: const EdgeInsets.fromLTRB(0, 20, 0, 20)
-      ),
-      style: const TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: 14,
-      ),
+          contentPadding:
+              EdgeInsets.fromLTRB(prefixIcon != null ? 0 : 20, 20, 5, 20)),
+      style: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 14,
+          color: !enabled ? Colors.grey : null),
     );
   }
 }

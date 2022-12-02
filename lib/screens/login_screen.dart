@@ -21,8 +21,8 @@ class _LoginScreenState extends State<LoginScreen> {
   ];
 
   final _formKey = GlobalKey<FormState>();
-  final _registrationController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _registrationController = TextEditingController(text: '029130');
+  final _passwordController = TextEditingController(text: '89794b621a313bb59eed0d9f0f4e8205');
   bool _isPasswordVisible = true;
   int _companyId = 1;
 
@@ -56,13 +56,12 @@ class _LoginScreenState extends State<LoginScreen> {
             positionId: -1),
       );
 
-      ServiceItemProvider serviceItemProvider =
-          context.read<ServiceItemProvider>();
-      final serviceItems = await serviceItemProvider.fetchServiceItems();
-
+      ServiceItemProvider serviceItemProvider = context.read<ServiceItemProvider>();
       UserProvider userProvider = context.read<UserProvider>();
-      final String? workName = await userProvider.fetchWorkName();
 
+      await serviceItemProvider.fetchServiceItems();
+      final String? workName = await userProvider.fetchWorkName();
+    
       userProvider.setUser(User(
         name: tender.name,
         workName: workName ?? '',

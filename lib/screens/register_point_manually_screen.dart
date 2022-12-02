@@ -163,6 +163,7 @@ class _RegisterPointManuallyScreenState
       }
 
       if (result is bool && result && await Vibration.hasVibrator() == true) {
+        _lastPoints.add(_employee!);
         Vibration.vibrate(duration: 200);
       }
 

@@ -151,7 +151,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          e.name.toCapitalized(),
+                          e.name.toCapitalized(capitalization: TextCapitalization.words),
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ],
@@ -186,7 +186,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   .take(20)
                   .map(
                     (e) => Text(
-                      e.name.toCapitalized(),
+                      e.name.toCapitalized(capitalization: TextCapitalization.words),
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   )

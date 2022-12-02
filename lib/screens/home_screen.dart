@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
       'title': 'Apontamento prod.',
       'icon': Icons.construction,
       'selected': false,
-      'screen': const ProductionScreen(),
+      'screen': const SelectServiceItemScreen(),
       'beforeNavigate': () => true,
     },
     {

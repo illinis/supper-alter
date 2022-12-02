@@ -13,8 +13,13 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case '/home':
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case '/start-journey':
+        return MaterialPageRoute(
+            builder: (_) => StartJourneyScreen(notifyParent: () {}));
+      case '/finish-journey':
+        return MaterialPageRoute(builder: (_) => const FinishJourneyScreen());
       case '/register-point':
-        if (args is  RegisterPointScreenArguments) {
+        if (args is RegisterPointScreenArguments) {
           return MaterialPageRoute(
             builder: (_) => RegisterPointScreen(
               order: args.order,
@@ -25,7 +30,7 @@ class RouteGenerator {
         }
         return _mainRoute();
       case '/register-point-manually':
-        if (args is  RegisterPointManuallyScreenArguments) {
+        if (args is RegisterPointManuallyScreenArguments) {
           return MaterialPageRoute(
             builder: (_) => RegisterPointManuallyScreen(
               order: args.order,
@@ -34,6 +39,15 @@ class RouteGenerator {
           );
         }
         return _mainRoute();
+      case '/select-production':
+        return MaterialPageRoute(
+            builder: (_) => const SelectServiceItemScreen());
+      case '/select-employees':
+        return MaterialPageRoute(
+            builder: (_) => const SelectEmployeesScreen());
+      case '/indicate-production':
+        return MaterialPageRoute(
+            builder: (_) => const IndicateProductionScreen());
 
       default:
         return _mainRoute();

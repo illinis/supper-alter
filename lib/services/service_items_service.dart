@@ -1,12 +1,9 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:supper_app/services/services.dart';
-
-import '../models/models.dart';
 
 class ServiceItemService {
   final client = baseService.client;
